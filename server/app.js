@@ -27,15 +27,6 @@ app.use("/", authenticationRouter);
 app.use("/posts", postRouter);
 app.use("/users", userRouter);
 
-// app.use((err, req, res, next) => {
-//   res.status(err.status || 500).json({ error: err });
-// });
-
-// next(err) // any input, express will assume it = error (even normal string)
-
-// without any error handling for unspecified routes, at least for react, if router does not exist
-// return 404 not found
-
 const errorController = require("./controllers/errorController");
 app.use(errorController);
 

@@ -3,5 +3,3 @@ module.exports = (func) => {
     func(req, res, next).catch((err) => next(err));
   };
 };
-
-// when calling, input function needs to declare all (req, res, next) due to next(err)

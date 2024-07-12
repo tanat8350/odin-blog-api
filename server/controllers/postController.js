@@ -34,18 +34,31 @@ exports.postPost = [
       isPublished: req.body.isPublished,
       author: req.body.author,
     });
-    await post.save();
+
+    const result = await post.save();
+    if (!result) {
+      return res.sendStatus(400);
+    }
+
     res.sendStatus(200);
   }),
 ];
 
 exports.deletePost = asyncErrorHandler(async (req, res) => {
-  await Post.findByIdAndDelete(req.params.id).exec();
+  const result = await Post.findByIdAndDelete(req.params.id).exec();
+  if (!result) {
+    return res.sendStatus(400);
+  }
+
   res.sendStatus(200);
 });
 
 exports.getPost = asyncErrorHandler(async (req, res) => {
   const post = await Post.findById(req.params.id).populate("author").exec();
+  if (!post) {
+    return res.sendStatus(400);
+  }
+
   res.json(post);
 });
 
@@ -64,7 +77,11 @@ exports.updatePost = [
       _id: req.params.id,
     });
 
-    await Post.findByIdAndUpdate(req.params.id, post);
+    const result = await Post.findByIdAndUpdate(req.params.id, post);
+    if (!result) {
+      return res.sendStatus(400);
+    }
+
     res.sendStatus(200);
   }),
 ];

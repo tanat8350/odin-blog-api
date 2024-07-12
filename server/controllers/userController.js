@@ -5,5 +5,9 @@ exports.getUserPosts = asyncErrorHandler(async (req, res) => {
   const posts = await Post.find({
     author: req.params.id,
   }).exec();
+  if (!posts) {
+    return res.sendStatus(400);
+  }
+
   res.json(posts);
 });

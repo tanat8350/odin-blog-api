@@ -29,13 +29,23 @@ exports.postComment = [
       author: req.body.author,
       post: req.params.id,
     });
-    await comment.save();
+
+    const result = await comment.save();
+    if (!result) {
+      return res.sendStatus(400);
+    }
+
     res.sendStatus(200);
   }),
 ];
 
 exports.getComment = asyncErrorHandler(async (req, res, next) => {
   const comment = await Comment.findById(req.params.commentid).exec();
+
+  if (!comment) {
+    return res.sendStatus(400);
+  }
+
   res.status(200).json(comment);
 });
 
@@ -53,12 +63,23 @@ exports.updateComment = [
       _id: req.params.commentid,
     });
 
-    await Comment.findByIdAndUpdate(req.params.commentid, comment);
+    const result = await Comment.findByIdAndUpdate(
+      req.params.commentid,
+      comment,
+    );
+    if (!result) {
+      return res.sendStatus(400);
+    }
+
     res.sendStatus(200);
   }),
 ];
 
 exports.deleteComment = asyncErrorHandler(async (req, res, next) => {
-  await Comment.findByIdAndDelete(req.params.commentid);
+  const result = await Comment.findByIdAndDelete(req.params.commentid);
+  if (!result) {
+    return res.sendStatus(400);
+  }
+
   res.sendStatus(200);
 });
