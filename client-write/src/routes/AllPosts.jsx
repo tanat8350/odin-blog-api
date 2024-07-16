@@ -12,7 +12,7 @@ const AllPosts = () => {
     <>
       <h1>All Posts</h1>
       {data ? (
-        <PostCards data={data} />
+        <PostCards data={data} author="true" />
       ) : (
         <p>Be the first one to create post</p>
       )}

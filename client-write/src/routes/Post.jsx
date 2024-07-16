@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PostForm from "../components/PostForm";
 
 const Post = () => {
   const navigate = useNavigate();
+  const editorRef = useRef();
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const { id } = useParams();
@@ -32,7 +33,10 @@ const Post = () => {
         Authorization: "Bearer " + localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        ...data,
+        content: editorRef.current.getContent(),
+      }),
     });
     try {
       const json = await res.json();
@@ -51,6 +55,7 @@ const Post = () => {
           button="Update"
           data={data}
           setData={setData}
+          editorRef={editorRef}
           onSubmit={onSubmit}
           error={error}
           deleteId={id}

@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 
 import PostForm from "../components/PostForm";
+
 const NewPost = () => {
   const navigate = useNavigate();
+  const editorRef = useRef(null);
   const [user, setUser] = useOutletContext();
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -17,7 +19,11 @@ const NewPost = () => {
         Authorization: "Bearer " + localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...data, author: user.id }),
+      body: JSON.stringify({
+        ...data,
+        author: user.id,
+        content: editorRef.current.getContent(),
+      }),
     });
     try {
       const json = await res.json();
@@ -34,6 +40,7 @@ const NewPost = () => {
       button="Create"
       data={data}
       setData={setData}
+      editorRef={editorRef}
       onSubmit={onSubmit}
       error={error}
     />

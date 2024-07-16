@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import PostCards from "../components/PostCards";
+import "./Home.css";
 const Index = () => {
   const [user, setUser] = useOutletContext();
   const [data, setData] = useState(null);
@@ -25,7 +26,9 @@ const Index = () => {
       {data ? (
         <>
           <h1>Your posts</h1>
-          <Link to="new-post">Create new post</Link>
+          <Link className="button" to="new-post">
+            Create new post
+          </Link>
           <PostCards data={data} />
         </>
       ) : (
