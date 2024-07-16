@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/Root.jsx";
-import Index from "./routes/Index.jsx";
+import Home from "./routes/Home.jsx";
 import Login from "./routes/Login.jsx";
 import Logout from "./routes/Logout.jsx";
 import Signup from "./routes/Signup.jsx";
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Index />,
+        element: <Home />,
       },
       {
         path: "login",

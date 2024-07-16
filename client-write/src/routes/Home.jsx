@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import PostCards from "../components/PostCards";
-import "./Home.css";
 const Index = () => {
   const [user, setUser] = useOutletContext();
   const [data, setData] = useState(null);

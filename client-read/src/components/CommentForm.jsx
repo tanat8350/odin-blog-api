@@ -19,7 +19,7 @@ const CommentForm = ({ onSubmit, data, setData, deleteBtn }) => {
   };
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form className="comment-form" onSubmit={onSubmit}>
         <div>
           <label htmlFor="content">Comment: </label>
           <textarea
@@ -34,8 +34,14 @@ const CommentForm = ({ onSubmit, data, setData, deleteBtn }) => {
             value={data ? data.content : ""}
           ></textarea>
         </div>
-        <button type="submit">{deleteBtn ? "Update" : "Submit"}</button>
-        {deleteBtn && <button onClick={onClickDelete}>Delete</button>}
+        <button className="button" type="submit">
+          {deleteBtn ? "Update" : "Submit"}
+        </button>
+        {deleteBtn && (
+          <button className="button deleteButton" onClick={onClickDelete}>
+            Delete
+          </button>
+        )}
       </form>
     </>
   );

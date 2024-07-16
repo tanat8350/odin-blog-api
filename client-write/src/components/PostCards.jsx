@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "./PostCards.css";
 
 const PostCards = ({ data, author }) => {
   const removeHtmlTag = (str) => {
@@ -9,12 +8,12 @@ const PostCards = ({ data, author }) => {
     <>
       {data.map((item) => (
         <div key={item._id} className="card">
-          <h1>
+          <h2>
             <Link to={`/posts/${item._id}`}>
               {item.title}
               {item.isPublished && " (Published)"}
             </Link>
-          </h1>
+          </h2>
           {author && (
             <Link className="author" to={`/users/${item.author._id}`}>
               {item.author.username}

@@ -68,13 +68,15 @@ const Post = () => {
   if (error) return <p>Error: {error.message}</p>;
   return (
     <>
-      <div>
-        <h1>{data && data.title}</h1>
+      <div className="card">
+        <h2 className="title">{data && data.title}</h2>
+        {data && (
+          <Link className="author" to={`/users/${data.author._id}`}>
+            {data.author.username}
+          </Link>
+        )}
         <p>{data && data.content}</p>
         <p>{data && data.timestamp}</p>
-        {data && (
-          <Link to={`/users/${data.author._id}`}>{data.author.username}</Link>
-        )}
       </div>
       {user ? (
         <>
@@ -93,17 +95,21 @@ const Post = () => {
       {comments && comments.length > 0 ? (
         comments.map((comment) => {
           return (
-            <div key={comment._id}>
-              <p>{comment.content}</p>
-              <p>{comment.timestamp}</p>
-              <Link to={`/users/${comment.author._id}`}>
-                {comment.author.username}
-              </Link>
-              {user && user.id === comment.author._id && (
-                <>
-                  <Link to={`./comments/${comment._id}`}>Edit</Link>
-                </>
-              )}
+            <div className="comment-card" key={comment._id}>
+              <p className="first-child">
+                {user && user.id === comment.author._id && (
+                  <>
+                    <Link to={`./comments/${comment._id}`}>[Edit] </Link>
+                  </>
+                )}
+                {comment.content}
+              </p>
+              <p className="lowbotmargin">
+                {new Date(comment.timestamp).toLocaleString()} by&nbsp;
+                <Link className="author" to={`/users/${comment.author._id}`}>
+                  {comment.author.username}
+                </Link>
+              </p>
             </div>
           );
         })

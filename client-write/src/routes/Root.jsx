@@ -1,6 +1,5 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "./Root.css";
 
 const Root = () => {
   const navigate = useNavigate();
@@ -35,7 +34,9 @@ const Root = () => {
               <p>{user.username}</p>
             </li>
             <li>
-              <Link to="/logout">Logout</Link>
+              <Link className="logout" to="/logout">
+                Logout
+              </Link>
             </li>
           </ul>
         ) : (

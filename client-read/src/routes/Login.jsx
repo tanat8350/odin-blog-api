@@ -34,16 +34,19 @@ const Login = () => {
   };
   return (
     <>
+      <h1>Login</h1>
       <form onSubmit={onSubmit}>
-        <div>
+        <div className="lowbotmargin">
           <label htmlFor="username">Username </label>
           <input type="text" name="username" id="username" />
         </div>
         <div>
           <label htmlFor="password">password </label>
-          <input type="text" name="password" id="password" />
+          <input type="password" name="password" id="password" />
         </div>
-        <button type="submit">Login</button>
+        <button className="button" type="submit">
+          Login
+        </button>
       </form>
       <ErrorValification error={error} />
     </>

@@ -40,12 +40,12 @@ const Signup = () => {
         <div className="lowbotmargin">
           <label htmlFor="password">Password </label>
           &nbsp; &nbsp;
-          <input type="text" name="password" id="password" />
+          <input type="password" name="password" id="password" />
         </div>
         <div>
           <label htmlFor="admin_code">Admin Code </label>
           &nbsp; &nbsp;
-          <input type="text" name="admin_code" id="admin_code" />
+          <input type="password" name="admin_code" id="admin_code" />
         </div>
         <button className="button" type="submit">
           Sign up

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import ErrorValification from "./ErrorValification";
 import { Editor } from "@tinymce/tinymce-react";
-import "./PostForm.css";
 
 const PostForm = ({
   title,

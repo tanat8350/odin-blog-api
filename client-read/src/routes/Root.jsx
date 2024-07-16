@@ -10,27 +10,31 @@ const Root = () => {
   }, []);
   return (
     <>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-      </ul>
-      {user ? (
-        <>
-          <p>{user.username}</p>
-          <a href="/logout">Logout</a>
-        </>
-      ) : (
+      <nav>
         <ul>
           <li>
-            <Link to="/login">Login in</Link>
-          </li>
-          <li>
-            <Link to="/signup">Sign up</Link>
+            <Link to="/">Home</Link>
           </li>
         </ul>
-      )}
-      <div>
+        {user ? (
+          <>
+            <p>{user.username}</p>
+            <Link className="logout" href="/logout">
+              Logout
+            </Link>
+          </>
+        ) : (
+          <ul>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/signup">Sign up</Link>
+            </li>
+          </ul>
+        )}
+      </nav>
+      <div className="outlet">
         <Outlet context={[user, setUser]}></Outlet>
       </div>
     </>

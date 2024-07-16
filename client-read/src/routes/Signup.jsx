@@ -29,16 +29,19 @@ const Signup = () => {
   };
   return (
     <>
+      <h1>Sign up</h1>
       <form onSubmit={onSubmit}>
-        <div>
+        <div className="lowbotmargin">
           <label htmlFor="username">Username </label>
           <input type="text" name="username" id="username" />
         </div>
         <div>
           <label htmlFor="password">Password </label>
-          <input type="text" name="password" id="password" />
+          <input type="password" name="password" id="password" />
         </div>
-        <button type="submit">Sign up</button>
+        <button className="button" type="submit">
+          Sign up
+        </button>
       </form>
       <ErrorValification error={error} />
     </>

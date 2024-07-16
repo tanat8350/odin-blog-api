@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useOutletContext, useParams } from "react-router-dom";
 import PostCards from "../components/PostCards";
-import "./Home.css";
 const Index = () => {
   const { id } = useParams();
   const [user, setUser] = useOutletContext();
