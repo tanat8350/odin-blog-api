@@ -1,4 +1,6 @@
 const express = require("express");
+const compression = require("compression");
+const helmet = require("helmet");
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
@@ -12,11 +14,21 @@ db.on("error", console.error.bind(console, "mongo connection error"));
 
 const app = express();
 
+const RateLimit = require("express-rate-limit");
+const limiter = RateLimit({
+  windowMs: 60000, // 1 min
+  max: 20,
+});
+app.use(limiter);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 const cors = require("cors");
 app.use(cors());
+
+app.use(helmet());
+app.use(compression());
 
 const indexRouter = require("./routes/index");
 const authenticationRouter = require("./routes/authentication");
