@@ -8,6 +8,7 @@ const verifyToken = require("../middlewares/verifyToken");
 
 router.get("/", postController.getPosts);
 router.post("/", verifyToken, postController.postPost);
+router.get("/published", postController.getPublishedPosts);
 router.get("/:id", postController.getPost);
 router.put("/:id", verifyToken, postController.updatePost);
 router.delete("/:id", verifyToken, postController.deletePost);

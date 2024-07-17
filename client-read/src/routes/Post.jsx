@@ -104,7 +104,7 @@ const Post = () => {
                 )}
                 {comment.content}
               </p>
-              <p className="lowbotmargin">
+              <p className="nobotmargin">
                 {new Date(comment.timestamp).toLocaleString()} by&nbsp;
                 <Link className="author" to={`/users/${comment.author._id}`}>
                   {comment.author.username}

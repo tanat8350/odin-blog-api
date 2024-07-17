@@ -2,7 +2,16 @@ import { Link } from "react-router-dom";
 
 const PostCards = ({ data, author }) => {
   const removeHtmlTag = (str) => {
-    return str.replace(/&lt;.*&gt;(.*)&lt;&#x2F;.*&gt;/g, "$1");
+    return (
+      str
+        // FIX: lines containing color disappeared
+        // tags
+        .replace(/&lt;.*&gt;(.*)&lt;&#x2F;.*&gt;/g, "$1")
+        // bullets
+        .replace(/&lt;.*&gt;/g, "")
+        // empty lines
+        .replace(/&amp;nbsp;/g, "")
+    );
   };
   return (
     <>
@@ -20,7 +29,9 @@ const PostCards = ({ data, author }) => {
             </Link>
           )}
           <p>{removeHtmlTag(item.content)}</p>
-          <p>{new Date(item.timestamp).toLocaleString()}</p>
+          <p className="nobotmargin">
+            {new Date(item.timestamp).toLocaleString()}
+          </p>
         </div>
       ))}
     </>

@@ -52,7 +52,11 @@ const PostForm = ({
           <Editor
             apiKey={import.meta.env.VITE_TINYMCE_API}
             onInit={(_evt, editor) => (editorRef.current = editor)}
-            initialValue={data ? encodeHtml(data.content) : "<p>new post</p>"}
+            initialValue={
+              data && data.content
+                ? encodeHtml(data.content)
+                : "<p>new post</p>"
+            }
             init={{
               height: 500,
               menubar: false,

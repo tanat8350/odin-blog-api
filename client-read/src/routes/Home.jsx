@@ -7,7 +7,7 @@ const Home = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/posts", { mode: "cors" })
+    fetch("http://localhost:3000/posts/published", { mode: "cors" })
       .then((res) => {
         if (res.status >= 400) {
           throw new Error("Server error");

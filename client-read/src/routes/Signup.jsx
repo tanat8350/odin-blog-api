@@ -31,7 +31,7 @@ const Signup = () => {
     <>
       <h1>Sign up</h1>
       <form onSubmit={onSubmit}>
-        <div className="lowbotmargin">
+        <div className="nobotmargin">
           <label htmlFor="username">Username </label>
           <input type="text" name="username" id="username" />
         </div>

@@ -8,6 +8,13 @@ exports.getPosts = asyncErrorHandler(async (req, res) => {
   res.json(posts);
 });
 
+exports.getPublishedPosts = asyncErrorHandler(async (req, res) => {
+  const posts = await Post.find({ isPublished: true })
+    .populate("author")
+    .exec();
+  res.json(posts);
+});
+
 const validatePost = [
   body("title")
     .trim()

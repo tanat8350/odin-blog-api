@@ -13,3 +13,17 @@ exports.getUserPosts = asyncErrorHandler(async (req, res) => {
 
   res.json(posts);
 });
+
+exports.getUserPublishedPosts = asyncErrorHandler(async (req, res) => {
+  const posts = await Post.find({
+    author: req.params.id,
+    isPublished: true,
+  })
+    .populate("author")
+    .exec();
+  if (!posts) {
+    return res.sendStatus(400);
+  }
+
+  res.json(posts);
+});

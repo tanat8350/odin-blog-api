@@ -6,7 +6,7 @@ const User = () => {
   const [error, setError] = useState(null);
   const { id } = useParams();
   useEffect(() => {
-    fetch("http://localhost:3000/users/" + id, { mode: "cors" })
+    fetch("http://localhost:3000/users/published/" + id, { mode: "cors" })
       .then((res) => {
         if (res.status >= 400) {
           throw new Error("Server error");

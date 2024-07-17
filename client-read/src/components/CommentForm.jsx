@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const CommentForm = ({ onSubmit, data, setData, deleteBtn }) => {
@@ -20,8 +19,10 @@ const CommentForm = ({ onSubmit, data, setData, deleteBtn }) => {
   return (
     <>
       <form className="comment-form" onSubmit={onSubmit}>
-        <div>
-          <label htmlFor="content">Comment: </label>
+        <div className="comment-content">
+          <label className="nobotmargin" htmlFor="content">
+            Comment: &nbsp;
+          </label>
           <textarea
             name="content"
             id="content"
