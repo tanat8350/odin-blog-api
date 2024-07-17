@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useOutletContext, useParams } from "react-router-dom";
 import ErrorValification from "../components/ErrorValification";
 import CommentForm from "../components/CommentForm";
+import { Editor } from "@tinymce/tinymce-react";
 
 const Post = () => {
   const [user, setUser] = useOutletContext();
@@ -11,6 +12,15 @@ const Post = () => {
   const [error, setError] = useState(null);
   const [valError, setValError] = useState(null);
   const { id } = useParams();
+
+  const encodeHtml = (str) => {
+    return str
+      .replace(/&amp;/g, "&")
+      .replace(/&gt;/g, ">")
+      .replace(/&lt;/g, "<")
+      .replace(/&quot;/g, '"')
+      .replace(/&#x2F;/g, "/");
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -75,8 +85,12 @@ const Post = () => {
             {data.author.username}
           </Link>
         )}
-        <p>{data && data.content}</p>
-        <p>{data && data.timestamp}</p>
+        {data && (
+          <div dangerouslySetInnerHTML={{ __html: encodeHtml(data.content) }} />
+        )}
+        <p className="nobotmargin">
+          {data && new Date(data.timestamp).toLocaleString()}
+        </p>
       </div>
       {user ? (
         <>

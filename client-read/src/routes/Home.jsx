@@ -38,7 +38,7 @@ const Home = () => {
                 {post.author.username}
               </Link>
               <p key={`${post._id}_content`}>{removeHtmlTag(post.content)}</p>
-              <p key={`${post._id}_timestamp`}>
+              <p className="nobotmargin" key={`${post._id}_timestamp`}>
                 {new Date(post.timestamp).toLocaleString()}
               </p>
             </div>
